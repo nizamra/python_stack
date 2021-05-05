@@ -1,0 +1,88 @@
+Microsoft Windows [Version 10.0.19041.928]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\NIZAM>D:\codingdojo\python_stack
+'D:\codingdojo\python_stack' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\NIZAM>D:
+
+D:\>codingdojo\python_stack
+'codingdojo\python_stack' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\>cd codingdojo\python_stack
+
+D:\codingdojo\python_stack>ls
+'ls' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\codingdojo\python_stack>dir
+ Volume in drive D is Data School
+ Volume Serial Number is 88AD-12B8
+
+ Directory of D:\codingdojo\python_stack
+
+05/04/2021  15:24    <DIR>          .
+05/04/2021  15:24    <DIR>          ..
+05/04/2021  15:16    <DIR>          django
+05/05/2021  11:03    <DIR>          my-environments
+05/04/2021  15:24            10,496 surief.jpg
+05/04/2021  15:17    <DIR>          _python
+               1 File(s)         10,496 bytes
+               5 Dir(s)  16,681,750,528 bytes free
+
+D:\codingdojo\python_stack>cd my-environments
+
+D:\codingdojo\python_stack\my-environments>dir
+ Volume in drive D is Data School
+ Volume Serial Number is 88AD-12B8
+
+ Directory of D:\codingdojo\python_stack\my-environments
+
+05/05/2021  11:03    <DIR>          .
+05/05/2021  11:03    <DIR>          ..
+05/05/2021  11:03    <DIR>          py3Env
+               0 File(s)              0 bytes
+               3 Dir(s)  16,681,750,528 bytes free
+
+D:\codingdojo\python_stack\my-environments>cd py3Env
+
+D:\codingdojo\python_stack\my-environments\py3Env>dir
+ Volume in drive D is Data School
+ Volume Serial Number is 88AD-12B8
+
+ Directory of D:\codingdojo\python_stack\my-environments\py3Env
+
+05/05/2021  11:03    <DIR>          .
+05/05/2021  11:03    <DIR>          ..
+05/05/2021  11:03    <DIR>          Include
+05/05/2021  11:03    <DIR>          Lib
+05/05/2021  11:03               117 pyvenv.cfg
+05/05/2021  11:09    <DIR>          Scripts
+               1 File(s)            117 bytes
+               5 Dir(s)  16,681,750,528 bytes free
+
+D:\codingdojo\python_stack\my-environments\py3Env>call Scripts\activate
+
+(py3Env) D:\codingdojo\python_stack\my-environments\py3Env>pip list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 49.2.1
+
+(py3Env) D:\codingdojo\python_stack\my-environments\py3Env>pip freeze
+
+(py3Env) D:\codingdojo\python_stack\my-environments\py3Env>pip show setuptools
+Name: setuptools
+Version: 49.2.1
+Summary: Easily download, build, install, upgrade, and uninstall Python packages
+Home-page: https://github.com/pypa/setuptools
+Author: Python Packaging Authority
+Author-email: distutils-sig@python.org
+License: UNKNOWN
+Location: d:\codingdojo\python_stack\my-environments\py3env\lib\site-packages
+Requires:
+Required-by:
+
+(py3Env) D:\codingdojo\python_stack\my-environments\py3Env>
