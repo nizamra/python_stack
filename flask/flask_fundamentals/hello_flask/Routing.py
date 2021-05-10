@@ -8,6 +8,9 @@ def hello_world():
 @app.route('/dojo')
 def success():
     return "dojo"
+@app.route('/hi')                           
+def hi():
+    return render_template("index.html", phrase="hello", times=5)
 
 @app.route('/say/<name>')
 def hello(name):

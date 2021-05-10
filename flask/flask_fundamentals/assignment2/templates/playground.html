@@ -11,30 +11,31 @@
         
         h1 {
           color: maroon;
-          margin-left: 40px;
+          text-align: center;
         }
         p{
             background-color: darkcyan;
             color: darkorange;
             padding: 7px;
+            margin: 5px;
             display: inline-block;
+            width: 250px;
+            height: 250px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            margin: auto;
         }
         </style>
     <title>Flask</title>
 </head>
 <body>
-    <h1>Hello Flask!</h1>
-    <h3>My Flask Template</h3>
-    <p>Phrase: {{ phrase }}</p>
-    <p>Times: {{ times }}</p>
-        
-    {% for x in range(0,times): %}
-        <p>{{ phrase }}</p>
-    {% endfor %}
-        
-    {% if phrase == "hello" %}
-      <p>The phrase says hello</p>
-    {% endif %}
-
+    <h1>Welcome</h1>
+    <div class="ham">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
 </body>
 </html>
