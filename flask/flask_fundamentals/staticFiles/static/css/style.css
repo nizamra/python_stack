@@ -1,0 +1,29 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+img{
+    width:100%;
+}
+body {
+    background-color: rgb(204, 167, 131);
+}
+h1 {
+    color: maroon;
+    text-align: center;
+}
+p{
+    background-color: darkcyan;
+    color: darkorange;
+    padding: 7px;
+    width: 350px;
+    height: 350px;
+    margin: 5px;
+}
+div{
+    margin: 20px auto;
+    background-color: rgb(86, 255, 108);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

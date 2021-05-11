@@ -6,7 +6,11 @@ class BankAccount:
         self.balance += amount
         return self
     def make_withdrawal(self, amount):
-        self.balance -= amount
+        if amount<self.balance:
+            self.balance -= amount
+        else:
+            self.balance -= 5
+            print ("Insufficient funds: Charging a $5 fee")
         return self
     def display_account_info(self):
         print(f"Balance: {self.balance}")
