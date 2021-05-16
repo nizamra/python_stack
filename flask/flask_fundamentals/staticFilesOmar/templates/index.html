@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>Welcome</h1>
+    {% for x in range(x): %}
+        <div class="container">
+            {% if x%2==0 %}
+
+            {% for x in range(y): %}
+                <div class="red-box" style="background-color: {{color1}}"></div>
+                <div class="black-box" style="background-color: {{color2}}"></div>
+            {% endfor %}
+            </div>
+            {% else %}
+            {% for x in range(y): %}
+            <div class="black-box" style="background-color: {{color2}}"></div>
+            <div class="red-box" style="background-color: {{color1}}"></div>
+            {% endfor %}
+            </div>
+            {% endif %}
+    {% endfor %}
+</body>
+</html>
