@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>table in flask</title>
+</head>
+<body>
+    <table >
+        <tr>
+        <th>Firstname</th>
+        <th>Lastname</th> 
+        </tr>
+        {%for item in users%}
+        <td>{{item['first_name']}}</td>
+        <td>{{item['last_name']}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>
