@@ -1,3 +1,20 @@
-th,td{
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 970px;
+    margin: 0 auto;
+}
+
+table {
+    margin: 0 auto;
+    height: 100px;
+    background-color: blue;
+}
+
+table, tr, td , th {
     border: 2px dashed rgb(16, 197, 16);
+    padding: 20px;
 }

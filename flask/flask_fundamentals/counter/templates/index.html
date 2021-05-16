@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter for guests</title>
+</head>
+<body>
+    <h1>you visted this page <span style="color: blue; font-size: 90px;">{{count}}</span> times</h1>
+    <form action="/addtwo" method="get">
+        <button type="submit">Add Two</button>
+    </form>
+    <form action="/destroy_session" method="get">
+        <button type="submit">Reset</button>
+    </form>
+    <form action="/addnum" method="post" >
+        <label for="num">add your number</label>
+        <input type="text"name="num" >
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
