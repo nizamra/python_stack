@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    background-color: gray;
+}
+p{
+    margin: auto;
+    margin-top: 200px;
+    border: 2px dashed darkblue;
+    color: crimson;
+    width: 450px;
+    height: 250px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 100px;
+    background-color: wheat;
+}
