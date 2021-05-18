@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from time import gmtime, strftime
+from time import localtime, strftime
 
 def index(request):
     return HttpResponse("this is the equivalent of @app.route('/')!")
@@ -19,7 +19,7 @@ def destroy(request,number):
     return redirect("/blogs")
 def time(request):
     context  = {
-        "time": strftime("%Y-%m-%d %H:%M %p", gmtime())
+        "time": strftime("%a, %Y-%m-%d %H:%M %p", localtime())
     }
     return render(request,"time.html", context)
 
