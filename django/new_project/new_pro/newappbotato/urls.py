@@ -4,9 +4,10 @@ urlpatterns = [
     path('', views.index),
     path('blogs', views.root),
     path('blogs/new', views.new),
+    path('blogs/<str:name>', views.name),
     path('blogs/create', views.create),
-    path('blogs/<number>', views.show),
-    path('blogs/<number>/edit', views.edit),
-    path('blogs/<number>/delete', views.destroy),
+    path('blogs/<int:number>', views.show),
+    path('blogs/<int:number>/edit', views.edit),
+    path('blogs/<int:number>/delete', views.destroy),
     path('time', views.time),
 ]

@@ -5,13 +5,17 @@
 }
 p{
     margin: auto;
-    margin-top: 200px;
     border: 2px dashed darkblue;
     color: crimson;
     width: 450px;
-    height: 250px;
+    height: 210px;
     font-size: 40px;
     text-align: center;
     line-height: 100px;
     background-color: wheat;
+}
+img{
+    position: relative;
+    left: 570px;
+    width: 150px;
 }

@@ -7,6 +7,8 @@ def root(request):
     return HttpResponse("placeholder to later display a list of all blogs")
 def new(request):
     return HttpResponse("placeholder to display a new form to create a new blog")
+def name(request,name):
+    return HttpResponse(f"Hello dear {name} hope you're having fun")
 def create(request):
     return redirect("/")
 def show(request,number):
