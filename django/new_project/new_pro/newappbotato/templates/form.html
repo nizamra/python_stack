@@ -29,9 +29,16 @@
         </select><br><br>
         <p>Comment (optional)</p>
         <textarea name="cremlent"></textarea>
+        <input type="submit" value="Submit"><br><br><br><br>
+    </form>
+    <form action="/secondform" method="POST">
+        {% csrf_token %}
+        Your Name: <input type="text" name="neam"><br><br>
+        Your Email: <input type="email" name="email"><br><br>
+        Your password: <input type="password" name="pswd"><br><br>
+        <p>Comment (optional)</p>
+        <textarea name="cmnt"></textarea>
         <input type="submit" value="Submit">
-
     </form>
 </body>
-
 </html>

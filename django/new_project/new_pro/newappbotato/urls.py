@@ -11,5 +11,8 @@ urlpatterns = [
     path('blogs/<int:number>/delete', views.destroy),
     path('time', views.time),
     path('form', views.form),
-    path('result', views.result)
+    path('result', views.result),
+    path('secondform', views.secondform),
+    path('counter', views.countthem),
+    path('showdata', views.showdata)
 ]

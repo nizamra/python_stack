@@ -41,6 +41,19 @@ def result(request):
     if request.method == "POST":
         print("a POST request is being made to this route")
         return render(request,"result.html", context)
+        
+def secondform(request):
+    request.session['neam'] = request.POST['neam']
+    request.session['email'] = request.POST['email']
+    request.session['pswd'] = request.POST['pswd']
+    request.session['cmnt'] = request.POST['cmnt']
+    return redirect("/showdata")
+def showdata(request):
+    return render(request,"datatwo.html")
+
+def countthem(request):
+    request.session['visitingNumber'] = int(request.session.get('visitingNumber',0)) +1
+    return render(request, "cnt.html")
     
 
     
