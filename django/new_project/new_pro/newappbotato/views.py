@@ -3,6 +3,8 @@ from time import localtime, strftime
 
 def index(request):
     return HttpResponse("this is the equivalent of @app.route('/')!")
+def form(request):
+    return render(request,'form.html')
 def root(request):
     return HttpResponse("placeholder to later display a list of all blogs")
 def new(request):
@@ -22,6 +24,23 @@ def time(request):
         "time": strftime("%a, %Y-%m-%d %H:%M %p", localtime())
     }
     return render(request,"time.html", context)
-
+def result(request):
+    nome=request.POST["nome"]
+    locale=request.POST["locale"]
+    longage=request.POST["longage"]
+    cremlent=request.POST["cremlent"]
+    context ={
+        "nome":nome,
+        "locale":locale,
+        "longage":longage,
+        "cremlent":cremlent
+    }
+    if request.method == "GET":
+    	print("a GET request is being made to this route")
+    	return HttpResponse("sorry we don't deal with GET req")
+    if request.method == "POST":
+        print("a POST request is being made to this route")
+        return render(request,"result.html", context)
+    
 
     

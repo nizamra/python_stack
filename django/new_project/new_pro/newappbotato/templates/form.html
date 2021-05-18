@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey PyDjango</title>
+</head>
+
+<body>
+    <form action="/result" method="POST">
+        {% csrf_token %}
+        <h3>Your Name: </h3>
+        <input type="text" name="nome"><br><br>
+        <label for="locale">Dojo Location: </label>
+        <select name="locale" id="location">
+            <option value="USA">USA</option>
+            <option value="Germany">Germany</option>
+            <option value="Palestine">Palestine</option>
+            <option value="France">France</option>
+        </select><br><br>
+        <label for="longage">Favorite Language:  </label>
+        <select name="longage" id="language">
+            <option value="Arabic">Arabic</option>
+            <option value="English">English</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Spanish">Spanish</option>
+        </select><br><br>
+        <p>Comment (optional)</p>
+        <textarea name="cremlent"></textarea>
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+
+</html>

@@ -10,4 +10,6 @@ urlpatterns = [
     path('blogs/<int:number>/edit', views.edit),
     path('blogs/<int:number>/delete', views.destroy),
     path('time', views.time),
+    path('form', views.form),
+    path('result', views.result)
 ]
