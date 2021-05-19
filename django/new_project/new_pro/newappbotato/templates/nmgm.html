@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counting you</title>
+</head>
+
+<body>
+    <h1>welcome to the great number game</h1>
+    <p> I am thinking of a number between 1 and 100</p>
+    <p>take a guess!</p>
+    <p>{{request.session.trap}}</p>
+    <form action="/userguesses" method="POST">
+        {% csrf_token %}
+        Your guess here: <input type="text" name="usernum"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="/deletenumber">lets PLAY again</a>
+</body>
+
+</html>

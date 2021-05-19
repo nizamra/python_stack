@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from time import localtime, strftime
+import random
+
 
 def index(request):
     return HttpResponse("this is the equivalent of @app.route('/')!")
@@ -58,4 +60,18 @@ def destroy(request):
     request.session.clear()
     return redirect("/counter")
 
-    
+def nmgm(request):
+    request.session['randomNumber']=random.randint(1, 100)
+    print(f"printing the random number of my choice {request.session['randomNumber']}")
+    return render(request,"nmgm.html")
+def userguesses(request):
+    if int(request.POST["usernum"])<request.session['randomNumber']:
+        request.session['trap']="you are low"
+    elif int(request.POST["usernum"])>request.session['randomNumber']:
+        request.session['trap']="you are high"
+    else:
+        request.session['trap']="WOOOW you are CORRECT!!!"
+    return render(request,"nmgm.html")
+def deletenumber(request):
+    request.session.clear()
+    return redirect("/nmgm")

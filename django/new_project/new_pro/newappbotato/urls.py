@@ -15,5 +15,8 @@ urlpatterns = [
     path('secondform', views.secondform),
     path('counter', views.countthem),
     path('showdata', views.showdata),
-    path('destroy_session', views.destroy)
+    path('destroy_session', views.destroy),
+    path('nmgm', views.nmgm),
+    path('userguesses', views.userguesses),
+    path('deletenumber', views.deletenumber)
 ]
