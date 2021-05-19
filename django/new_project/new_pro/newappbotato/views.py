@@ -54,6 +54,8 @@ def showdata(request):
 def countthem(request):
     request.session['visitingNumber'] = int(request.session.get('visitingNumber',0)) +1
     return render(request, "cnt.html")
-    
+def destroy(request):
+    request.session.clear()
+    return redirect("/counter")
 
     

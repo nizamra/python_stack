@@ -14,5 +14,6 @@ urlpatterns = [
     path('result', views.result),
     path('secondform', views.secondform),
     path('counter', views.countthem),
-    path('showdata', views.showdata)
+    path('showdata', views.showdata),
+    path('destroy_session', views.destroy)
 ]
