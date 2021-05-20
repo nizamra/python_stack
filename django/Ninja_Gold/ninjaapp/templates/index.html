@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h3{
+        display: inline-block
+    }
+</style>
+<body>
+    <h3>your gold</h3>
+    <h3>{{request.session.value}}</h3>
+    <div>
+        <h2>farm</h2>
+        <p>(earns 10-20 golds)</p>
+        <form action="/find" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="find">
+        </form>
+    </div>
+    <div>
+        <h2>cave</h2>
+        <p>(earns 5-10 golds)</p>
+        <form action="/find" method="POST">
+            <input type="submit" name="find">
+        </form>
+    </div>
+    <div>
+        <h2>house</h2>
+        <p>(earns 2-5 golds)</p>
+        <form action="/find" method="POST">
+            <input type="submit" name="find">
+        </form>
+    </div>
+    <div>
+        <h2>casino</h2>
+        <p>(earns 0-50 golds)</p>
+        <form action="/find" method="POST">
+            <input type="submit" name="find">
+        </form>
+    </div>
+</body>
+</html>
