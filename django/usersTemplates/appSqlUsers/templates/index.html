@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0 auto;
+            text-align: center;
+        }
+        table, th, td {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>all the user</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+        <tbody>
+            {% for someone in people %}
+                <tr>
+                    <td>{{someone.id}}</td>
+                    <td>{{someone.fname}} {{someone.lname}}</td>
+                    <td>{{someone.email}}</td>
+                    <td>{{someone.age}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h1>Add new user</h1>
+    <form action="formdata" method="POST"> 
+        {% csrf_token %}
+        <label for="userName">First name</label>
+        <input type="text" name="userName"><br>
+
+        <label for="userLastName">Last name</label>
+        <input type="text" name="userLastName"><br>
+
+        <label for="mail">Email</label>
+        <input type="text" name="mail"><br>
+
+        <label for="age">Age</label>
+        <input type="text" name="age"><br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
