@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+        }
+        .form{
+            background-color: turquoise;
+            border: 2px dotted rebeccapurple;
+        }
+        .data{
+            background-color: teal;
+            color: blue;
+            font-size: larger;
+            border: 1px dashed black;
+        }
+    </style>
+    <title>something for your eyes only</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h2>Add Dojo</h2>
+            <form action="/inputsql" method="POST">
+                {% csrf_token %}
+                Dojos Name <input type="text" name="dojoname"><br>
+                City <input type="text" name="city"><br>
+                State <input type="text" name="state"><br>
+                Desc <input type="text" name="desc"><br>
+                <input type="hidden" name="whatForm" value="dojo">
+                <input type="submit" name="Add">
+            </form>
+        </div>
+        <div class="form">
+            <h2>Add Ninja</h2>
+            <form action="/inputsql" method="POST">
+                {% csrf_token %}
+                First Name <input type="text" name="ninjaFname"><br>
+                Last Name <input type="text" name="lname"><br>
+                dojoId<select name="dojoId" id="dojoId's">
+                    {% for datum in data %}
+                        <option value="{{ datum.name }}">{{ datum.name }} - {{ datum.state }}</option>
+                    {% endfor %}
+                </select><br>
+                <input type="hidden" name="whatForm" value="ninja">
+                <input type="submit" name="Find Gold">
+            </form>
+        </div>
+    </div>
+    <br>
+    <a href="/clear">Clear All</a>
+    <br>
+    <div class="data">
+        <ul>
+        {% for datum in data %}
+            <li>{{ datum.name }} - {{ datum.city }} - {{ datum.state }} - {{ datum.desc }}</li>
+                <ul>
+                {% for student in datum.ninjas.all %}
+                    <li>{{ student.fname }} - {{ student.lname }}</li>
+                {% endfor %}
+                </ul>
+        {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
