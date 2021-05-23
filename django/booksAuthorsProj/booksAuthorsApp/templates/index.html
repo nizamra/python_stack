@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+            background-color: bisque;
+        }
+        .addBock{
+            background-color: lightskyblue;
+            border: 1px dotted blueviolet;
+        }
+        table,th,tr,td{
+            border: 1px solid black;
+        }
+    </style>
+    <title>Books And Authors</title>
+</head>
+<body>
+    <div class="container">
+    <div class="addBock">
+        <h2>Add a Book</h2>
+        <form action="/addingBook" method="POST">
+            {% csrf_token %}
+            title <input type="text" name="bookName"><br>
+            description <input type="text" name="description"><br>
+            <input type="submit" name="Add">
+        </form>
+        <a href="/clear">Clear All to start over</a>
+    </div>
+    <div class="tablue">
+        <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        {% for elmnt in allBooks %}
+        <tr>
+            <td>{{ elmnt.id }}</td>
+            <td>{{ elmnt.title }}</td>
+            <td>{{ elmnt.description }}</td>
+            <td><a href="books/{{ elmnt.id }}">view this book</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+    </div>
+</body>
+</html>
