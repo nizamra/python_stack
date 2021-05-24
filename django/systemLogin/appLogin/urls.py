@@ -5,7 +5,7 @@ urlpatterns = [
     path('logreg', views.loginOrRegister),
 
     # path('cleanData', views.cleanAllData),
-    path('cleanSql', views.cleanAllSql),
+    # path('cleanSql', views.cleanAllSql),
     path('cleanSession', views.cleanTheSession),
 
     # path('addingBook', views.addingsomeBook),

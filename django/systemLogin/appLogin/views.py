@@ -56,21 +56,7 @@ def loginOrRegister(request):
             return HttpResponse(f"I have this email and its a correct password belonging to Mr {thisUser.fname} {thisUser.lname}")
         else:
             return HttpResponse("I have this email but the password is NOT right")
-
-        
-
     return redirect('/')
-
-# def showBookData(request,bookNumber):
-#     context={
-#         'myBook' : book.objects.get(id=bookNumber)
-#     }
-#     return render(request,'BookData.html', context)
-# def showauthorData(request,authId):
-#     context={
-#         'myauthor' : author.objects.get(id=authId)
-#     }
-#     return render(request,'authorData.html', context)
 
 def cleanAllData(request):
     x=user.objects.all()
