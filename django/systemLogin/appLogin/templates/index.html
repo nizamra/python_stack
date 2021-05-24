@@ -4,22 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .container{
-            display: flex;
-            justify-content: space-around;
-            background-color: rgb(230, 181, 122);
-        }
-        .add{
-            background-color: rgb(46, 113, 155);
-            border: 1px dotted blueviolet;
-        }
-        .add2{
-            background-color: rgb(5, 63, 99);
-            border: 1px dotted rgb(97, 15, 174);
-        }
-        
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
     <title>home login page</title>
 </head>
 <body>
@@ -36,18 +23,32 @@
                 re-password <input type="password" name="repassword"><br>
                 <input type="submit" name="Add">
             </form>
-            <a href="/clear">Clear All to start over</a>
+            <a href="/cleanData">Clear All to start over</a>
         </div>
         <div class="add2">
             <h2>login here</h2>
             <form action="/logreg" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="login" name="regOrLog">
-                email <input type="text" name="email"><br>
-                password <input type="password" name="password"><br>
+                email <input type="text" name="email"><br><br>
+                password <input type="password" name="password"><br><br>
                 <input type="submit" name="Add">
             </form>
         </div>
-        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>mail</th>
+            </tr>
+            {% for elmnt in allUsers %}
+            <tr>
+                <td>{{ elmnt.id }}</td>
+                <td>{{ elmnt.email }}</td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
 </body>
 </html>

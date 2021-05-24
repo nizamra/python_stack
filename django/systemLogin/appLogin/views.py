@@ -1,7 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 def index(request):
-    return render(request,'index.html')
+    if "logedin" in request.session:
+        return HttpResponse(f"You are logged in as {request.session['name']}")
+    context={
+        'allUsers' : user.objects.all()
+    }
+    return render(request,'index.html', context)
 # def authorsPage(request):
 #     context={
 #         'allauthors' : author.objects.all()
@@ -19,7 +24,11 @@ def loginOrRegister(request):
         if four!=five:
             return HttpResponse("You IDIOT PICE OF SHIT Didn't Provide the same PASSWORD in the second field")
         else:
+            
             user.objects.create(fname=one,lname=two,email=three,passwd=four)
+            request.session['logedin']=True
+            request.session['name']=one
+            return HttpResponse(f"You have done a good job adding new regester for {request.session['name']}")
     elif (request.method=="POST" and request.POST['regOrLog']=="login"):
         one=request.POST['email']
         two=request.POST['password']
@@ -27,6 +36,8 @@ def loginOrRegister(request):
         for someuser in users:
             if one in someuser.email:
                 if someuser.passwd==two:
+                    request.session['logedin']=True
+                    request.session['name']=one
                     return HttpResponse(f"I have this email and its a correct password belonging to Mr {someuser.fname} {someuser.lname}")
                 else:
                     return HttpResponse("I have this email but the password is NOT right")
@@ -45,9 +56,15 @@ def loginOrRegister(request):
 #     }
 #     return render(request,'authorData.html', context)
 
-# def cleanAll(request):
-#     x=book.objects.all()
-#     x.delete()
-#     x=author.objects.all()
-#     x.delete()
-#     return redirect('/')
+def cleanAllData(request):
+    x=user.objects.all()
+    x.delete()
+    request.session.clear()
+    return redirect('/')
+def cleanAllSql(request):
+    x=user.objects.all()
+    x.delete()
+    return redirect('/')
+def cleanTheSession(request):
+    request.session.clear()
+    return redirect('/')
