@@ -29,20 +29,36 @@ def loginOrRegister(request):
             request.session['logedin']=True
             request.session['name']=one
             return HttpResponse(f"You have done a good job adding new regester for {request.session['name']}")
+    # elif (request.method=="POST" and request.POST['regOrLog']=="login"):
+    #     one=request.POST['email']
+    #     two=request.POST['password']
+    #     users = user.objects.all()
+    #     for someuser in users:
+    #         if one in someuser.email:
+    #             if someuser.passwd==two:
+    #                 request.session['logedin']=True
+    #                 request.session['name']=one
+    #                 return HttpResponse(f"I have this email and its a correct password belonging to Mr {someuser.fname} {someuser.lname}")
+    #             else:
+    #                 return HttpResponse("I have this email but the password is NOT right")
+    #         else:
+    #             return HttpResponse("I do NOT have this email")
     elif (request.method=="POST" and request.POST['regOrLog']=="login"):
         one=request.POST['email']
         two=request.POST['password']
-        users = user.objects.all()
-        for someuser in users:
-            if one in someuser.email:
-                if someuser.passwd==two:
-                    request.session['logedin']=True
-                    request.session['name']=one
-                    return HttpResponse(f"I have this email and its a correct password belonging to Mr {someuser.fname} {someuser.lname}")
-                else:
-                    return HttpResponse("I have this email but the password is NOT right")
-            else:
-                return HttpResponse("I do NOT have this email")
+        try:
+            thisUser = user.objects.get(email=one)
+        except:
+            return HttpResponse("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
+        if thisUser.passwd==two:
+            request.session['logedin']=True
+            request.session['name']=one
+            return HttpResponse(f"I have this email and its a correct password belonging to Mr {thisUser.fname} {thisUser.lname}")
+        else:
+            return HttpResponse("I have this email but the password is NOT right")
+
+        
+
     return redirect('/')
 
 # def showBookData(request,bookNumber):

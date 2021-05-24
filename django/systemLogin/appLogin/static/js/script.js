@@ -1,4 +1,6 @@
-function minimumNumber(password) {
+
+
+function checkPasswd(password) {
     if (password.length < 8){
         return alert("Short Password MUST be longer than 8 charecters")
     }
@@ -15,4 +17,11 @@ function minimumNumber(password) {
         return alert("Password MUST contain a special character")
     }
     return True;
+}
+
+
+
+
+function checkMail(){
+    return alert("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
 }

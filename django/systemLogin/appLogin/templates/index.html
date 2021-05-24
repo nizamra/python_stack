@@ -13,16 +13,30 @@
     <div class="container">
         <div class="add">
             <h2>New Registeration</h2>
+
+
+
+
+
+
             <form action="/logreg" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="register" name="regOrLog">
-                fname <input type="text" name="fname"><br>
-                lname <input type="text" name="lname"><br>
-                email <input type="text" name="email"><br>
-                password <input type="password" name="password"><br>
-                re-password <input type="password" name="repassword"><br>
+                fname <input type="text" name="fname" required><br>
+                lname <input type="text" name="lname" required><br>
+                email <input type="text" name="email" pattern="(?=.*@).{8,}" title="Must be a valid email"><br>
+                password <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!@#$%^&*()+]).{8,12}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 characters max 12" required><br>
+                re-password <input type="password" name="repassword" required><br>
                 <input type="submit" name="Add">
             </form>
+
+
+            
+
+
+
+
+
             <a href="/cleanData">Clear All to start over</a>
         </div>
         <div class="add2">
@@ -31,7 +45,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="login" name="regOrLog">
                 email <input type="text" name="email"><br><br>
-                password <input type="password" name="password"><br><br>
+                password <input type="password" name="password" required><br><br>
                 <input type="submit" name="Add">
             </form>
         </div>
@@ -41,11 +55,13 @@
             <tr>
                 <th>Id</th>
                 <th>mail</th>
+                <th>pass</th>
             </tr>
             {% for elmnt in allUsers %}
             <tr>
                 <td>{{ elmnt.id }}</td>
                 <td>{{ elmnt.email }}</td>
+                <td>{{ elmnt.passwd }}</td>
             </tr>
             {% endfor %}
             </table>
