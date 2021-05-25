@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="tv, shows, movies, stars, intertainment">
+    <meta name="description" content="Shows that are good to see">
+    <meta name="author" content="Nizam Aljawabreh">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>ALL SHOWS</title>
+</head>
+<body>
+    <h1>ALL SHOWS</h1>
+    <table style="width:70%">
+        <caption>All present Shows</caption>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for thisShow in allShows %}
+		<tr>
+			<td style="height: 40px;">{{thisShow.id}}</td>
+            <td>{{thisShow.title}}</td>
+            <td>{{thisShow.network}}</td>
+            <td>{{thisShow.releaseDate}}</td>
+            <td> <a href="shows/{{ thisShow.id }}">view</a> | <a href="edit/{{ thisShow.id }}">Edit</a> | <a href="delete/{{ thisShow.id }}">Delete</a></td>
+		</tr>
+	{% endfor %}
+    </table>
+
+    <button onclick="document.location='/showsNew'">Add New Show</button>
+    
+</body>
+</html>

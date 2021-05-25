@@ -1,0 +1,21 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+a:hover {
+    color: purple;
+    background-color: #00f329;
+    text-decoration:underline;
+    font-size:larger;
+}
+table, th, td {
+    border: 1px solid rgb(38, 9, 9);
+    border-collapse: collapse;
+    text-align: center;
+}
+.containHorizintal{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(221, 176, 120);
+    border: 1px dotted rgb(22, 11, 33);
+}

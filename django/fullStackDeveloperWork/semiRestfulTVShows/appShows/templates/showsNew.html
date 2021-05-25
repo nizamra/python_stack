@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="Basic html code">
+    <meta name="author" content="Nizam Aljawabreh">
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">    
+	<script src="{% static 'js/script.js' %}"></script>
+
+    <title>Create a New Show</title>
+</head>
+<body>
+    <form action="/createShow" method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Personalia:</legend>
+            <label for="thisID">Title:</label><br>
+            <input type="text" id="thisID" name="titleField" autofocus required><br><br>
+
+            <label for="netID">Network:</label>
+            <input type="text" id="netID" name="networkField" required>
+            <label for="releaseDate">Release Date:</label>
+            <input type="date" id="releaseDate" name="releaseDateField"><br><br>
+    
+            <label for="descID">description:</label><br>
+            <textarea name="descriptionField" rows="10" cols="50" id="descID">describe the show in simple words</textarea><br><br>
+    
+            <input type="submit" value="Create">
+            <input type="reset" value="Reset">
+        </fieldset>
+    </form>
+</body>
+</html>

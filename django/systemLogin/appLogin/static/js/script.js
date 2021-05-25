@@ -18,5 +18,5 @@ function checkPasswd(thisPass) {
     if(thisPass.match(/[-!@#$%^&*()+]+/) != null){
         return alert("Password MUST contain a special character")
     }
-    return True;
+    return location.replace("http://127.0.0.1:8000/logreg");
 }

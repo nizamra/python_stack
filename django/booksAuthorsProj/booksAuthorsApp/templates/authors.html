@@ -22,35 +22,35 @@
 </head>
 <body>
     <div class="container">
-    <div class="addAuthor">
-        <h2>Add an Author</h2>
-        <form action="/addingAuthor" method="POST">
-            {% csrf_token %}
-            fname <input type="text" name="authorName"><br>
-            lname <input type="text" name="lname"><br>
-            <input type="submit" name="Add">
-        </form>
-        <a href="/clear">Clear All to start over</a>
-    </div>
+        <div class="addAuthor">
+            <h2>Add an Author</h2>
+            <form action="/addingAuthor" method="POST">
+                {% csrf_token %}
+                fname <input type="text" name="authorName"><br>
+                lname <input type="text" name="lname"><br>
+                <input type="submit" name="Add">
+            </form>
+            <a href="/clear">Clear All to start over</a>
+        </div>
 
-    <div class="tablue">
-        <table>
-        <tr>
-            <th>Id</th>
-            <th>fname</th>
-            <th>lname</th>
-            <th>Action</th>
-        </tr>
-        {% for elmnt in allauthors %}
-        <tr>
-            <td>{{ elmnt.id }}</td>
-            <td>{{ elmnt.fname }}</td>
-            <td>{{ elmnt.lname }}</td>
-            <td><a href="authors/{{ elmnt.id }}">view this author</a></td>
-        </tr>
-        {% endfor %}
-        </table>
-    </div>
+        <div class="tablue">
+            <table>
+            <tr>
+                <th>Id</th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>Action</th>
+            </tr>
+            {% for elmnt in allauthors %}
+            <tr>
+                <td>{{ elmnt.id }}</td>
+                <td>{{ elmnt.fname }}</td>
+                <td>{{ elmnt.lname }}</td>
+                <td><a href="authors/{{ elmnt.id }}">view this author</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+        </div>
     </div>
 </body>
 </html>
