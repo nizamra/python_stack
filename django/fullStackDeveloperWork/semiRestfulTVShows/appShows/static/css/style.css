@@ -19,3 +19,7 @@ table, th, td {
     background-color: rgb(221, 176, 120);
     border: 1px dotted rgb(22, 11, 33);
 }
+.messages{
+    color: red;
+    font-size: larger;
+}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
+from django.contrib import messages
 
 def index(request):
     if "logedin" in request.session:
@@ -13,11 +14,24 @@ def showsNewPage(request):
     return render(request, 'showsNew.html')
 
 def recordShow(request):
-    if request.method=="POST":
+    errors = Show.objects.validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+            return redirect('/showsNew')
+    else:
         Show.objects.create(title=request.POST['titleField'],network=request.POST['networkField'] ,releaseDate=request.POST['releaseDateField'] ,description=request.POST['descriptionField'])
         x=Show.objects.get(title=request.POST['titleField'])
         num=x.id
         return redirect('/shows/'+str(num))
+
+    # if request.method=="POST":
+    #     Show.objects.create(title=request.POST['titleField'],network=request.POST['networkField'] ,releaseDate=request.POST['releaseDateField'] ,description=request.POST['descriptionField'])
+    #     x=Show.objects.get(title=request.POST['titleField'])
+    #     num=x.id
+    #     return redirect('/shows/'+str(num))
+
+
 def updateShow(request,showId):
     if request.method=="POST":
         thisShow=Show.objects.get(id=showId)

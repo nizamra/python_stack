@@ -7,12 +7,13 @@
     <title>Read One</title>
 </head>
 <body>
-    
+    <a href="/">Go Home</a>
     <h1>TV show {{thisShow.id}}</h1>
     <h2>Title: {{thisShow.title}}</h2>
     <h2>Network:  {{thisShow.network}}</h2>
     <h2>Release Date: {{thisShow.releaseDate}}</h2>
-    <h2>Description: {{thisShow.description}}</h2>
+    <h2>Description:</h2>
+    <p>{{thisShow.description}}</p>
     <h2>last updated: {{thisShow.updatedAt}}</h2>
     <a href="edit/{{ thisShow.id }}">Edit</a>
     <a href="delete/{{ thisShow.id }}">Delete</a>

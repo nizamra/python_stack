@@ -14,6 +14,7 @@
     <title>Create a New Show</title>
 </head>
 <body>
+    <a href="/">Go Home</a>
     <form action="/updateShow/{{ thisShow.id }}" method="POST">
         {% csrf_token %}
         <fieldset>

@@ -14,6 +14,14 @@
     <title>Create a New Show</title>
 </head>
 <body>
+    <a href="/">Go Home</a>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form action="/createShow" method="POST">
         {% csrf_token %}
         <fieldset>
@@ -24,7 +32,7 @@
             <label for="netID">Network:</label>
             <input type="text" id="netID" name="networkField" required>
             <label for="releaseDate">Release Date:</label>
-            <input type="date" id="releaseDate" name="releaseDateField"><br><br>
+            <input type="date" id="releaseDate" name="releaseDateField" required><br><br>
     
             <label for="descID">description:</label><br>
             <textarea name="descriptionField" rows="10" cols="50" id="descID">describe the show in simple words</textarea><br><br>
