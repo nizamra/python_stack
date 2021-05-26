@@ -9,5 +9,6 @@ urlpatterns = [
     path('edit/<int:showId>', views.editShow),
     path('delete/<int:showId>', views.deleteShow),
     
+    
     path('clean', views.cleanAllData),
 ]

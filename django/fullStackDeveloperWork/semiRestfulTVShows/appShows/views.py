@@ -12,7 +12,7 @@ def index(request):
 
 def showsNewPage(request):
     return render(request, 'showsNew.html')
-
+    
 def recordShow(request):
     errors = Show.objects.validator(request.POST)
     if len(errors) > 0:

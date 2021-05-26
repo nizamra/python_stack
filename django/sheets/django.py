@@ -217,16 +217,36 @@ authors: <br>
 
 # 9. creating Models CAPITALIZED
 from django.db import models
+import re
+
+class userManager(models.Manager):
+    def isValid(self, formPOST):
+        errors={}
+        if formPOST['fname'] < 2:
+            errors["name"] = "name should be at least 2 characters"
+        if formPOST['lname'] < 2:
+            errors["lastName"] = "name should be at least 2 characters"
+        if formPOST['bday'] < 2:
+            errors["bday"] = "birth day should be at least 2 characters"
+        
+        emailRegex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        if not emailRegex.match(formPOST['email']):
+            errors['email'] = "Invalid email address!!"
+
+        passwdRegex = re.compile(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!@#$%^&*()+]).{8,12}')
+        if not passwdRegex.match(formPOST["password"]):
+            errors['pass'] = "Password Must contain at least one number, one uppercase, lowercase letter, and at least 8 characters max 12"
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
 class Author(models.Model):
     fname = models.CharField(max_length=255)
     lname = models.CharField(max_length=255)
+    birthDate = models.DateField()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     books = models.ManyToManyField(book, related_name="authors")
@@ -238,7 +258,7 @@ class User(models.Model):
     passwd = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-
+    objects = userManager()
 
 
 
@@ -278,3 +298,16 @@ use a field containing the status of the related data: active, discontinued, can
  #search for this one and more options for all
         #status = models.TextChoices()
 		#status = models.TextChoices(default=active, discontinued, cancelled, deprecated)
+		
+
+<script>
+	function checkValidation() {
+		var val = $('#username').val()
+		if(val == "") {
+			$('#username-error').css('display', 'block')
+		}
+		else {
+			$('#login-form').submit()
+		}
+	}
+</script>

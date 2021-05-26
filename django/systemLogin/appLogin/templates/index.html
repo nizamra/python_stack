@@ -13,30 +13,30 @@
     <div class="container">
         <div class="add">
             <h2>New Registeration</h2>
-            {% comment %}
-            <!-- <form action="/logreg" method="POST">
+            <form action="/logreg" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="register" name="regOrLog">
                 fname <input type="text" name="fname" required><br>
                 lname <input type="text" name="lname" required><br>
-                email <input type="text" name="email" pattern="(?=.*@).{8,}" title="Must be a valid email"><br>
-                password <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!@#$%^&*()+]).{8,12}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 characters max 12" required><br>
-                re-password <input type="password" name="repassword" required><br>
-                <input type="submit" name="Add">
-            </form> -->
-            {% endcomment %}
-            <form action="/logreg" id="myForm" method="POST" onsubmit="checkPasswd(password)">
-                {% csrf_token %}
-                <input type="hidden" value="register" name="regOrLog">
-                fname <input type="text" name="fname" required><br>
-                lname <input type="text" name="lname" required><br>
+
+                birth day <input type="date" name="bday"><br>
+                
                 email <input type="text" name="email" required><br>
                 password <input type="password" name="password" required><br>
                 re-password <input type="password" name="repassword" required><br>
-                <input type="submit" name="Add" >{# onclick="checkPasswd()" #}
+                <input type="submit" name="Add" >
             </form>
             <a href="/cleanData">Clear All to start over</a>
         </div>
+
+        {% if messages %}
+        <div><ul class="messages">
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul></div>
+        {% endif %}
+
         <div class="add2">
             <h2>login here</h2>
             <form action="/logreg" method="POST">
@@ -48,16 +48,24 @@
             </form>
         </div>
     </div>
-    <div style="overflow:scroll;color:blue; background-color:gray; height:150px; max-width:450px">
+
+
+    <div class="userTable">
         <table>
             <tr>
                 <th>Id</th>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Brth Date</th>
                 <th>mail</th>
                 <th>pass</th>
             </tr>
             {% for elmnt in allUsers %}
             <tr>
                 <td>{{ elmnt.id }}</td>
+                <td>{{ elmnt.fname }}</td>
+                <td>{{ elmnt.lname }}</td>
+                <td>{{ elmnt.birthDate }}</td>
                 <td>{{ elmnt.email }}</td>
                 <td>{{ elmnt.passwd }}</td>
             </tr>

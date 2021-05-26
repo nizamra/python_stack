@@ -4,17 +4,25 @@ import re
 class ShowManager(models.Manager):
     def validator(self, postData):
         errors = {}
+        try:
+            thisShow=Show.objects.get(title=postData['titleField'])
+            errors["retitle"] = "this title is repeated"
+        except:
+            pass
+
         # emailRegex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         # if not emailRegex.match(postData['email']):
         #     errors['email'] = "Invalid email address!!"
+
         if len(postData['titleField']) < 2 :
             errors["title"] = "title is too short, must be longer than 2"
         if len(postData['networkField']) < 3 :
             errors["network"] = "network is shorter than 3 wich is not accepted"
-        if len(postData['descriptionField']) < 10 :
+        if not (len(postData['descriptionField']) == 0 or  len(postData['descriptionField']) > 10) :
             errors["description"] = "description should be at least 10 characters"
-        if len(postData['releaseDateField']) < 2 :
-            errors["releaseDate"] = "releaseDate is short"
+
+        # if postData['releaseDateField'] <  2021-05-25 :
+        #     errors["releaseDate"] = "releaseDate is in the future"
         return errors
 
 class Show(models.Model):

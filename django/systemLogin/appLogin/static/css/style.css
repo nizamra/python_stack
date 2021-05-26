@@ -20,3 +20,10 @@ a{
     color: red;
     font-weight: bold;
 }
+.userTable{
+    overflow:scroll;
+    color:blue;
+    background-color:gray;
+    height:150px;
+    max-width:450px
+}
