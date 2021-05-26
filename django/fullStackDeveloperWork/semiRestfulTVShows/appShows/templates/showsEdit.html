@@ -20,11 +20,13 @@
         <fieldset>
             <legend>Personalia:</legend>
             <label for="thisID">Title:</label><br>
-            <input type="text" id="thisID" name="titleField" value="{{thisShow.title}}" autofocus required><br><br>
-
+            <input type="text" id="thisID" name="titleField" value="{{thisShow.title}}" autofocus required><br>
+            releaseDate: {{thisShow.releaseDate}}
+            <br>
             <label for="netID">Network:</label>
             <input type="text" id="netID" name="networkField" value="{{thisShow.network}}" required>
             <label for="releaseDate">Release Date:</label>
+            
             <input type="date" id="releaseDate" name="releaseDateField" value="{{thisShow.releaseDate}}"><br><br>
     
             <label for="descID">description:</label><br>

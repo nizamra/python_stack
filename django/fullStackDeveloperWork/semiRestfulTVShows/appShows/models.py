@@ -1,5 +1,6 @@
 from django.db import models
 import re
+from time import localtime, strftime
 
 class ShowManager(models.Manager):
     def validator(self, postData):
@@ -21,8 +22,14 @@ class ShowManager(models.Manager):
         if not (len(postData['descriptionField']) == 0 or  len(postData['descriptionField']) > 10) :
             errors["description"] = "description should be at least 10 characters"
 
-        # if postData['releaseDateField'] <  2021-05-25 :
-        #     errors["releaseDate"] = "releaseDate is in the future"
+        todayTime= strftime("%Y-%m-%d", localtime())
+        postTime = postData['releaseDateField']
+        todayTimeList = todayTime.split("-")
+        postTimeList = postTime.split("-")
+        if (todayTimeList[0] < postTimeList[0]):
+            if  (todayTimeList[1] < postTimeList[1]):
+                if (todayTimeList[2] < postTimeList[2]):
+                    errors["releaseDate"] = "releaseDate is in the future"
         return errors
 
 class Show(models.Model):

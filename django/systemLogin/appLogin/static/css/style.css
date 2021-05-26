@@ -21,9 +21,17 @@ a{
     font-weight: bold;
 }
 .userTable{
+    margin-left:35px;
     overflow:scroll;
     color:blue;
     background-color:gray;
     height:150px;
-    max-width:450px
+    max-width:650px;
+}
+.messages{
+    padding: 20px;
+    max-width:600px;
+    background-color: rgb(35, 63, 99);
+    border: 3px dashes rgb(97, 65, 114);
+    color: red;
 }

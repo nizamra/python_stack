@@ -18,7 +18,7 @@ def recordShow(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-            return redirect('/showsNew')
+        return redirect('/showsNew')
     else:
         Show.objects.create(title=request.POST['titleField'],network=request.POST['networkField'] ,releaseDate=request.POST['releaseDateField'] ,description=request.POST['descriptionField'])
         x=Show.objects.get(title=request.POST['titleField'])

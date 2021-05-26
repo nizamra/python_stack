@@ -16,7 +16,7 @@ def loginOrRegister(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-                return redirect('/')
+            return redirect('/')
         else:
             User.objects.create(fname=request.POST['fname'],lname=request.POST['lname'],birthDate=request.POST['bday'],email=request.POST['email'],passwd=request.POST['password'])
             request.session['logedin']=True
