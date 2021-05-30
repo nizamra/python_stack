@@ -1,4 +1,5 @@
 from django.db import models
+import os
 import re
 
 class userManager(models.Manager):
@@ -46,6 +47,7 @@ class Book(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
 
 def createBook(title, desc, userId):
-    thisUser = User.objects.filter(id=userId)
-    user = thisUser[0]
-    return Book.objects.create(title=title,desc=desc,uploadeBy=user)
+    thisUser = User.objects.get(id=userId)
+    thisBook=Book.objects.create(title=title,desc=desc,uploadeBy=thisUser)
+    thisUser.createdBooks.add(thisBook)
+    return thisBook
