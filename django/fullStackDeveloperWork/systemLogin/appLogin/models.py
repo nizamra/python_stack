@@ -4,9 +4,10 @@ import re
 class userManager(models.Manager):
     def isValid(self, formPOST):
         errors={}
-        if len(formPOST['fname']) < 2:
+        nameRegex = re.compile(r'([a-zA-Z]).{2,22}')
+        if not nameRegex.match(formPOST["fname"]):
             errors["name"] = "name should be at least 2 characters"
-        if len(formPOST['lname']) < 2:
+        if not nameRegex.match(formPOST["lname"]):
             errors["lastName"] = "name should be at least 2 characters"
         if len(formPOST['bday']) < 2:
             errors["bday"] = "birth day should be at least 2 characters"

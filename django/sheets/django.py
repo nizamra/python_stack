@@ -222,26 +222,36 @@ import re
 class userManager(models.Manager):
     def isValid(self, formPOST):
         errors={}
-        if formPOST['fname'] < 2:
+        nameRegex = re.compile(r'([a-zA-Z]).{2,22}')
+        if not nameRegex.match(formPOST["fname"]):
             errors["name"] = "name should be at least 2 characters"
-        if formPOST['lname'] < 2:
+        if not nameRegex.match(formPOST["lname"]):
             errors["lastName"] = "name should be at least 2 characters"
-        if formPOST['bday'] < 2:
+        if len(formPOST['bday']) < 2:
             errors["bday"] = "birth day should be at least 2 characters"
         
         emailRegex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not emailRegex.match(formPOST['email']):
             errors['email'] = "Invalid email address!!"
 
+        try:
+            thisShow=User.objects.get(email=formPOST['email'])
+            errors["retitle"] = "this email is already registered"
+        except:
+            pass
+
         passwdRegex = re.compile(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!@#$%^&*()+]).{8,12}')
         if not passwdRegex.match(formPOST["password"]):
             errors['pass'] = "Password Must contain at least one number, one uppercase, lowercase letter, and at least 8 characters max 12"
+        return errors
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    #one to many relashion
+    author = models.ForeignKey(Author, related_name="books", on_delete = models.CASCADE)
 
 class Author(models.Model):
     fname = models.CharField(max_length=255)
@@ -250,7 +260,7 @@ class Author(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     books = models.ManyToManyField(book, related_name="authors")
-
+    
 class User(models.Model):
     fname = models.CharField(max_length=255)
     lname = models.CharField(max_length=255)
@@ -260,8 +270,31 @@ class User(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     objects = userManager()
 
+my_book = Book.objects.create(title="Little Women", author=Author.objects.get(id=2))
+Entry.objects.exclude(pub_date__gt=datetime.date(2005, 1, 3), headline='Hello')
+lil_books = Book.objects.filter(title__startswith="Little")
+
+books = Book.objects.filter(author__name="Louise May Alcott")
+books = Book.objects.filter(author__name__contains="Al")
+
+books = Book.objects.filter(author=Author.objects.get(id=2))
+
+age = models.IntegerField(default=200)	# if no age is entered for a new/existing, age will be set to 200
+age = models.IntegerField(null=True)	# if no age is provided, the field will remain empty
 
 
+
+this_book = Book.objects.get(id=4)	# retrieve an instance of a book
+this_publisher = Publisher.objects.get(id=2)	# retrieve an instance of a publisher
+
+this_publisher.books.add(this_book)		# add the book to this publisher's list of books
+this_book.publishers.add(this_publisher)	# add the publisher to this book's list of publishers
+
+this_publisher.books.remove(this_book)		# remove the book from this publisher's list of books
+this_book.publishers.remove(this_publisher)	# remove the publisher from this book's list of publishers
+
+this_publisher.books.all()	# get all the books this publisher is publishing
+this_book.publishers.all()	# get all the publishers for this book
 
 -------------------------------------------------
 python manage.py makemigrations
@@ -311,3 +344,30 @@ use a field containing the status of the related data: active, discontinued, can
 		}
 	}
 </script>
+
+
+
+
+
+python -m ensurepip
+(djangoEnv) D:\codingdojo\python_stack\django\fullStackDeveloperWork\theWall>python -m ensurepip
+Looking in links: c:\Users\NIZAM\AppData\Local\Temp\tmpoyijun1q
+Requirement already satisfied: setuptools in d:\codingdojo\python_stack\my-environments\djangoenv\lib\site-packages (49.2.1)
+Processing c:\users\nizam\appdata\local\temp\tmpoyijun1q\pip-20.2.3-py2.py3-none-any.whl
+Installing collected packages: pip
+Successfully installed pip-20.2.3
+
+pip list
+Package    Version
+---------- -------
+-ip        20.2.3
+asgiref    3.3.4
+bcrypt     3.2.0
+cffi       1.14.5
+Django     3.2.3
+pip        20.2.3
+pycparser  2.20
+pytz       2021.1
+setuptools 49.2.1
+six        1.16.0
+sqlparse   0.4.1

@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import *
 from django.contrib import messages
+from .models import *
+import bcrypt
 
 def index(request):
     if "logedin" in request.session:
@@ -18,20 +19,24 @@ def loginOrRegister(request):
                 messages.error(request, value)
             return redirect('/')
         else:
-            User.objects.create(fname=request.POST['fname'],lname=request.POST['lname'],birthDate=request.POST['bday'],email=request.POST['email'],passwd=request.POST['password'])
+            hashedPasswd=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+            User.objects.create(fname=request.POST['fname'],lname=request.POST['lname'],birthDate=request.POST['bday'],email=request.POST['email'],passwd=hashedPasswd)
             request.session['logedin']=True
             request.session['email'] = request.POST['email']
-            x=User.objects.get(email=request.POST['email'])
-            num=x.id
-            return redirect('/success/'+str(num))
+            thisUser=User.objects.get(email=request.POST['email'])
+            request.session['id']=thisUser.id
+            request.session['thisUsersName']=thisUser.fname
+            return redirect('/success')
     elif (request.method=="POST" and request.POST['regOrLog']=="login"):
         one=request.POST['email']
         two=request.POST['password']
         try:
-            thisUser = User.objects.get(email=one)
+            users = User.objects.filter(email=one)
+            thisUser = users[0]
         except:
             return HttpResponse("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
-        if thisUser.passwd==two:
+        if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
+            request.session['id']=thisUser.id
             request.session['logedin']=True
             request.session['thisUsersName']=one
             request.session['email']=one

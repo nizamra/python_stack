@@ -26,8 +26,8 @@ class ShowManager(models.Manager):
         postTime = postData['releaseDateField']
         todayTimeList = todayTime.split("-")
         postTimeList = postTime.split("-")
-        if (todayTimeList[0] < postTimeList[0]):
-            if  (todayTimeList[1] < postTimeList[1]):
+        if (todayTimeList[0] <= postTimeList[0]):
+            if  (todayTimeList[1] <= postTimeList[1]):
                 if (todayTimeList[2] < postTimeList[2]):
                     errors["releaseDate"] = "releaseDate is in the future"
         return errors
