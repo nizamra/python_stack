@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nizam Aljawabreh">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        #tre{
+            float: right;
+        }
+    </style>
+    <title>home login page</title>
+</head>
+<body>
+    <a href="/cleanSession" id="tre">Log Out</a>
+
+    <h1>Success! Welcome, {{request.session.thisUsersName}} {{request.session.thisUsersLname}}!</h1>
+    <h2>Add a Favourite Book</h2>
+    <form action="/addBook" method="POST">
+        {% csrf_token %}
+		<label for="thisID">title:</label><br>
+		<input type="text" id="thisID" name="formTitle" title="the title of the book youre about to add" placeholder="book title" autofocus required><br>
+
+		<textarea name="formDesc" rows="11" cols="35">a small description for the book</textarea>
+
+        <input type="submit" value="Submit">
+		<input type="reset" value="Empty to Fill Again">
+    </form>
+    {% for book in books %}
+        <a href="/getBook/{{book.id}}">{{book.title}}</a>
+        {{book.uploadeBy.fname}}
+        {{book.desc}}
+        {% if book in hisFavs %}
+            <p>faved</p>
+        {% else %}
+            <a href="/likethis/{{book.id}}"> Like</a>
+        {% endif %}
+    {% endfor %}
+ 
+</body>
+</html>
