@@ -13,32 +13,30 @@
             float: right;
         }
     </style>
-    <title>home login page</title>
+    <title>Your Thoughts Page</title>
 </head>
 <body>
     <a href="/cleanSession" id="tre">Log Out</a>
 
     <h1>Success! Welcome, {{request.session.thisUsersName}} {{request.session.thisUsersLname}}!</h1>
-    <h2>Add a Favourite Book</h2>
-    <form action="/addBook" method="POST">
+
+    <form action="/addThought" method="POST">
         {% csrf_token %}
-		<label for="thisID">Title:</label><br>
-		<input type="text" id="thisID" name="formTitle" title="the title of the book youre about to add" placeholder="book title" autofocus required><br>
-
-		<textarea name="formDesc" rows="11" cols="35">a small description for the book</textarea>
-
+		<label for="thisID">Your Thought Here:</label><br>
+		<textarea name="formDesc" id="thisID" rows="4" cols="35">Post a Great Thought Here!</textarea>
         <input type="submit" value="Submit">
 		<input type="reset" value="Empty to Fill Again">
     </form>
-    {% for book in books %}
-        <h2>All Books</h2>
-        <a href="/getBook/{{book.id}}">{{book.title}}</a> <br>
-        {{book.uploadeBy.fname}} - {{book.uploadeBy.lname}} <br>
-        {{book.desc}} <br>
-        {% if book in hisFavs %}
+
+    {% for Thought in Thoughts %}
+        <h2>All Thoughts</h2>
+        <a href="/getThought/{{Thought.id}}">{{Thought.title}}</a> <br>
+        <p>{{Thought.uploadeBy.fname}} Says:</p> <br>
+        {{Thought.post}} <br>
+        {% if Thought in hisFavs %}
             <p>faved</p>
         {% else %}
-            <a href="/likethis/{{book.id}}"> Like</a>
+            <a href="/likethis/{{Thought.id}}"> Like</a>
         {% endif %}
     {% endfor %}
  

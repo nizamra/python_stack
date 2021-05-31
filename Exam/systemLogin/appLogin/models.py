@@ -27,6 +27,17 @@ class userManager(models.Manager):
         if not passwdRegex.match(formPOST["password"]):
             errors['pass'] = "Password Must contain at least one number, one uppercase, lowercase letter, and at least 8 characters max 12"
         return errors
+    
+    def loginValid(self, formPOST):
+        errors={}
+        if len(formPOST['password']) < 1:
+            errors["password"] = "you have to provide a password"
+        
+        emailRegex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        if not emailRegex.match(formPOST['email']):
+            errors['email'] = "Invalid email address!!"
+
+        return errors
 
 class User(models.Model):
     fname = models.CharField(max_length=255)
@@ -38,16 +49,15 @@ class User(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     objects = userManager()
 
-class Book(models.Model):
-    title = models.CharField(max_length=255)
-    desc = models.TextField()
-    uploadeBy=models.ForeignKey(User, related_name="createdBooks", on_delete=models.CASCADE)
+class Thought(models.Model):
+    post = models.TextField()
+    uploadeBy=models.ForeignKey(User, related_name="createdThoughts", on_delete=models.CASCADE)
     likedBy=models.ManyToManyField(User, related_name="likes")
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
-def createBook(title, desc, userId):
+def createThought(desc, userId):
     thisUser = User.objects.get(id=userId)
-    thisBook=Book.objects.create(title=title,desc=desc,uploadeBy=thisUser)
-    thisUser.createdBooks.add(thisBook)
-    return thisBook
+    thisThought=Thought.objects.create(post=desc,uploadeBy=thisUser)
+    thisUser.createdThoughts.add(thisThought)
+    return thisThought

@@ -50,29 +50,5 @@
             </form>
         </div>
     </div>
-
-
-    <div class="userTable">
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Last Name</th>
-                <th>Brth Date</th>
-                <th>mail</th>
-                <th>pass</th>
-            </tr>
-            {% for elmnt in allUsers %}
-            <tr>
-                <td>{{ elmnt.id }}</td>
-                <td>{{ elmnt.fname }}</td>
-                <td>{{ elmnt.lname }}</td>
-                <td>{{ elmnt.birthDate }}</td>
-                <td>{{ elmnt.email }}</td>
-                <td>{{ elmnt.passwd }}</td>
-            </tr>
-            {% endfor %}
-            </table>
-    </div>
 </body>
 </html>

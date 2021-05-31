@@ -5,7 +5,7 @@ import bcrypt
 
 def index(request):
     if "logedin" in request.session:
-        return redirect('/success')
+        return redirect('/thoughts')
     context={
         'allUsers' : User.objects.all()
     }
@@ -26,44 +26,49 @@ def loginOrRegister(request):
             thisUser=User.objects.get(email=request.POST['email'])
             request.session['id']=thisUser.id
             request.session['thisUsersName']=thisUser.fname
-            return redirect('/success')
+            return redirect('/thoughts')
     elif (request.method=="POST" and request.POST['regOrLog']=="login"):
-        one=request.POST['email']
-        two=request.POST['password']
-        try:
-            users = User.objects.filter(email=one)
-            thisUser = users[0]
-        except:
-            return HttpResponse("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
-        if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
-            request.session['id']=thisUser.id
-            request.session['logedin']=True
-            request.session['thisUsersName']=one
-            request.session['email']=one
-            return redirect('/success')
+        errors = User.objects.loginValid(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/')
         else:
-            return HttpResponse("I have this email but the password is NOT right")
+            one=request.POST['email']
+            two=request.POST['password']
+            try:
+                users = User.objects.filter(email=one)
+                thisUser = users[0]
+            except:
+                return HttpResponse("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
+            if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
+                request.session['id']=thisUser.id
+                request.session['logedin']=True
+                request.session['thisUsersName']=one
+                request.session['email']=one
+                return redirect('/thoughts')
+            else:
+                return HttpResponse("I have this email but the password is NOT right")
     return redirect('/')
 
-def welcomeBooks(request):
+def welcomeThoughts(request):
     if request.session['logedin']:
         thisUsers= User.objects.get(email=request.session['email'])
         request.session['thisUsersName']=thisUsers.fname
         request.session['id']=thisUsers.id
         request.session['thisUsersLname']=thisUsers.lname
         context={
-            'books' : Book.objects.all(),
-            'hisFavs' : Book.objects.filter(likedBy=thisUsers)
+            'Thoughts' : Thought.objects.all(),
+            'hisFavs' : Thought.objects.filter(likedBy=thisUsers)
         }
-        return render(request,'success.html', context)
+        return render(request,'thoughts.html', context)
 
 
 
-def addBook(request):
-    title = request.POST['formTitle']
+def addThought(request):
     desc = request.POST['formDesc']
     userId = request.session['id']
-    createBook(title, desc, userId)
+    createThought(desc, userId)
     return redirect('/')
 
 def cleanTheSession(request):
