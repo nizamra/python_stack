@@ -1,0 +1,91 @@
+from index.html
+
+            {% comment %}
+            <!-- <form action="/logreg" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="register" name="regOrLog">
+                fname <input type="text" name="fname" required><br>
+                lname <input type="text" name="lname" required><br>
+                email <input type="text" name="email" pattern="(?=.*@).{8,}" title="Must be a valid email"><br>
+                password <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-!@#$%^&*()+]).{8,12}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 characters max 12" required><br>
+                re-password <input type="password" name="repassword" required><br>
+                <input type="submit" name="Add">
+            </form>
+            #second attempt
+            <form action="/logreg" id="myForm" method="POST" onsubmit="checkPasswd(password)">
+                {% csrf_token %}
+                <input type="hidden" value="register" name="regOrLog">
+                fname <input type="text" name="fname" required><br>
+                lname <input type="text" name="lname" required><br>
+                email <input type="text" name="email" required><br>
+                password <input type="password" name="password" required><br>
+                re-password <input type="password" name="repassword" required><br>
+                <input type="submit" name="Add" >{# onclick="checkPasswd()" #}
+            </form> -->
+            {% endcomment %}
+
+from views.py in the app file
+# def authorsPage(request):
+#     context={
+#         'allauthors' : author.objects.all()
+#     }
+#     return render(request,'authors.html', context)
+
+
+afterline26 return redirect('/success')
+        # one=request.POST['fname']
+        # two=request.POST['lname']
+        # two2=request.POST['bday']
+        # three=request.POST['email']
+        # four=request.POST['password']
+        # five=request.POST['repassword']
+        # if four!=five:
+        #     return HttpResponse("You IDIOT PICE OF SHIT Didn't Provide the same PASSWORD in the second field")
+        # else:
+            
+        #     user.objects.create(fname=one,lname=two,birthDate=two2,email=three,passwd=four)
+        #     request.session['logedin']=True
+        #     request.session['name']=one
+        #     return HttpResponse(f"You have done a good job adding new regester for {request.session['name']}")
+
+
+    # elif (request.method=="POST" and request.POST['regOrLog']=="login"):
+    #     one=request.POST['email']
+    #     two=request.POST['password']
+    #     users = user.objects.all()
+    #     for someuser in users:
+    #         if one in someuser.email:
+    #             if someuser.passwd==two:
+    #                 request.session['logedin']=True
+    #                 request.session['name']=one
+    #                 return HttpResponse(f"I have this email and its a correct password belonging to Mr {someuser.fname} {someuser.lname}")
+    #             else:
+    #                 return HttpResponse("I have this email but the password is NOT right")
+    #         else:
+    #             return HttpResponse("I do NOT have this email")
+
+
+from urls.py in app file
+    # path('cleanData', views.cleanAllData),
+    # path('cleanSql', views.cleanAllSql),
+    path('cleanSession', views.cleanTheSession),
+
+    # path('addingBook', views.addingsomeBook),
+    # path('addingAuthor', views.addingNewAuthor),
+
+
+
+
+
+
+1	Nizam	Aljawabreh	None	nizamra.95@gmail.com	123456
+2	sam	alexistens	None	sam.gree@gmail.com	12345
+3	ahmad	adams	None	ah.ad@gmail.com	123456
+4	salman	khatib	None	sal.kha@gmail.com	123456
+5	diyar	barham	None	d.barham@gmail.com	1234rD@n
+6	tamer	nawasrahnaser	None	t.naser@gmail.com	12345678
+7	layth	rateb	None	l.ra@gmail.com	1DANCE@n00n
+8	damber	francisco	None	dam@jam.com	NCE@n00n99
+9	tamer	daraghmeh	Nov. 12, 2024	tamer.dar@gmail.com	NCE@n0n9
+10	tamer	daraghmeh	Nov. 12, 2024	tamer.dar@gmail.com	TT@n30n9b
+11	chigo	fang	Nov. 12, 2024	ch.fng@gmail.com	TT@n30n9b
