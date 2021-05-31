@@ -66,9 +66,12 @@ def welcomeThoughts(request):
 def thoughtData(request, id):
     if request.session['logedin']:
         thisUsers= User.objects.get(email=request.session['email'])
+        thisThought = Thought.objects.get(id=id),
+        thisThought = thisThought[0]
         context={
             'specificThought' : Thought.objects.get(id=id),
-            'hisFavs' : Thought.objects.filter(likedBy=thisUsers)
+            'hisFavs' : Thought.objects.filter(likedBy=thisUsers),
+            'likers' : User.objects.filter(likes=thisThought.id)
         }
         return render(request,'specificThought.html', context)
 

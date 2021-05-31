@@ -28,9 +28,9 @@
     <p>{{specificThought.uploadeBy.fname}} Says:</p> <br>
     <p class="box">{{specificThought.post}}</p> <br>
     {% if Thought in hisFavs %}
-        <a href="/unlikethis/{{Thought.id}}"> unlike</a>
+        <a href="/unlikethis/{{specificThought.id}}"> unlike</a>
     {% else %}
-        <a href="/likethis/{{Thought.id}}"> like</a>
+        <a href="/likethis/{{specificThought.id}}"> like</a>
     {% endif %}
 
     <h2>people who like the thought</h2>
@@ -40,7 +40,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
             </tr>
-            {% for user in specificThought.likedBy %}
+            {% for user in likers %}
             <tr>
                 <td>{{ user.fname }}</td>
                 <td>{{ user.lname }}</td>

@@ -38,11 +38,7 @@
     {% for Thought in Thoughts %}
         <p>{{Thought.uploadeBy.fname}} Says:</p> <br>
         <p class="box">{{Thought.post}}</p> <br>
-        {% if Thought in hisFavs %}
-            <p>faved</p>
-        {% else %}
-            <a href="/thought/{{Thought.id}}"> details</a>
-        {% endif %}
+        <a href="/thought/{{Thought.id}}"> details</a>
     {% endfor %}
  
 </body>
