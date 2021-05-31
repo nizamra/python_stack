@@ -40,7 +40,8 @@ def loginOrRegister(request):
                 users = User.objects.filter(email=one)
                 thisUser = users[0]
             except:
-                return HttpResponse("You are DOOMED HAHAHAHAHAHA... this email doesn't exist")
+                messages.error(request, "this email doesn't exist")
+                return redirect('/')
             if bcrypt.checkpw(two.encode(),thisUser.passwd.encode()):
                 request.session['id']=thisUser.id
                 request.session['logedin']=True
@@ -48,7 +49,8 @@ def loginOrRegister(request):
                 request.session['email']=one
                 return redirect('/thoughts')
             else:
-                return HttpResponse("I have this email but the password is NOT right")
+                messages.error(request, "I have this email but the password is NOT right")
+                return redirect('/')
     return redirect('/')
 
 def welcomeThoughts(request):
@@ -86,6 +88,7 @@ def likeThought(request, id):
     userId = request.session['id']
     likeSomeThought(id, userId)
     return redirect('/')
+
 def unlikethisThought(request, id):
     userId = request.session['id']
     unlikeSomeThought(id, userId)

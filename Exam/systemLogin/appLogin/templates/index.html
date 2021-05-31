@@ -28,7 +28,6 @@
                 re-password <input type="password" name="repassword" required><br>
                 <input type="submit" name="Add" >
             </form>
-            <a href="/cleanData">Clear All to start over</a>
         </div>
 
         {% if messages %}
@@ -44,7 +43,7 @@
             <form action="/logreg" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="login" name="regOrLog">
-                email <input type="text" name="email"><br><br>
+                email <input type="text" name="email" required><br><br>
                 password <input type="password" name="password" required><br><br>
                 <input type="submit" name="Add">
             </form>

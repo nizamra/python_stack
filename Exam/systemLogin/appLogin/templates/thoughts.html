@@ -12,11 +12,21 @@
         #tre{
             float: right;
         }
-        box{
-            max-width: 150px;
+        .box{
+            margin: 0px 5px;
+            max-width: 250px;
             max-height: 80px;
             border: 1px solid black;
-            background-color: gray;
+            background-color: rgb(163, 86, 86);
+        }
+        .brbr{
+            max-width: 900px;
+            height: 1px;
+            background-color: indigo;
+        }
+        .brbr2{
+            max-width: 300px;
+            background-color: rgb(0, 5, 73);
         }
     </style>
     <title>Your Thoughts Page</title>
@@ -34,11 +44,12 @@
 		<input type="reset" value="Empty to Fill Again">
     </form>
 
-    <h2>All Thoughts</h2>
+    <hr class="brbr">
     {% for Thought in Thoughts %}
-        <p>{{Thought.uploadeBy.fname}} Says:</p> <br>
-        <p class="box">{{Thought.post}}</p> <br>
+        <p>{{Thought.uploadeBy.fname}} Says:</p>
+        <p class="box">{{Thought.post}}</p>
         <a href="/thought/{{Thought.id}}"> details</a>
+        <hr class="brbr2">
     {% endfor %}
  
 </body>
