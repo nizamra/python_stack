@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Nizam Aljawabreh">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        #tre{
+            float: right;
+        }
+        box{
+            max-width: 150px;
+            max-height: 80px;
+            border: 1px solid black;
+            background-color: gray;
+        }
+    </style>
+    <title>Your Thoughts Page</title>
+</head>
+<body>
+    <a href="/cleanSession" id="tre">Log Out</a>
+    <br><br>
+
+    <p>{{specificThought.uploadeBy.fname}} Says:</p> <br>
+    <p class="box">{{specificThought.post}}</p> <br>
+    {% if Thought in hisFavs %}
+        <a href="/unlikethis/{{Thought.id}}"> unlike</a>
+    {% else %}
+        <a href="/likethis/{{Thought.id}}"> like</a>
+    {% endif %}
+
+    <h2>people who like the thought</h2>
+    <div class="peopleTable">
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            {% for user in specificThought.likedBy %}
+            <tr>
+                <td>{{ user.fname }}</td>
+                <td>{{ user.lname }}</td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+ 
+</body>
+</html>

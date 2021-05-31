@@ -63,12 +63,29 @@ def welcomeThoughts(request):
         }
         return render(request,'thoughts.html', context)
 
+def thoughtData(request, id):
+    if request.session['logedin']:
+        thisUsers= User.objects.get(email=request.session['email'])
+        context={
+            'specificThought' : Thought.objects.get(id=id),
+            'hisFavs' : Thought.objects.filter(likedBy=thisUsers)
+        }
+        return render(request,'specificThought.html', context)
 
 
 def addThought(request):
     desc = request.POST['formDesc']
     userId = request.session['id']
     createThought(desc, userId)
+    return redirect('/')
+
+def likeThought(request, id):
+    userId = request.session['id']
+    likeSomeThought(id, userId)
+    return redirect('/')
+def unlikethisThought(request, id):
+    userId = request.session['id']
+    unlikeSomeThought(id, userId)
     return redirect('/')
 
 def cleanTheSession(request):

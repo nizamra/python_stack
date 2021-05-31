@@ -12,6 +12,12 @@
         #tre{
             float: right;
         }
+        box{
+            max-width: 150px;
+            max-height: 80px;
+            border: 1px solid black;
+            background-color: gray;
+        }
     </style>
     <title>Your Thoughts Page</title>
 </head>
@@ -28,15 +34,14 @@
 		<input type="reset" value="Empty to Fill Again">
     </form>
 
+    <h2>All Thoughts</h2>
     {% for Thought in Thoughts %}
-        <h2>All Thoughts</h2>
-        <a href="/getThought/{{Thought.id}}">{{Thought.title}}</a> <br>
         <p>{{Thought.uploadeBy.fname}} Says:</p> <br>
-        {{Thought.post}} <br>
+        <p class="box">{{Thought.post}}</p> <br>
         {% if Thought in hisFavs %}
             <p>faved</p>
         {% else %}
-            <a href="/likethis/{{Thought.id}}"> Like</a>
+            <a href="/thought/{{Thought.id}}"> details</a>
         {% endif %}
     {% endfor %}
  

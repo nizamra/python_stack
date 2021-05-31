@@ -61,3 +61,15 @@ def createThought(desc, userId):
     thisThought=Thought.objects.create(post=desc,uploadeBy=thisUser)
     thisUser.createdThoughts.add(thisThought)
     return thisThought
+
+def likeSomeThought(id, userId):
+    thisUser = User.objects.get(id=userId)
+    thisThought=Thought.objects.get(id=id)
+    thisUser.likes.add(thisThought)
+    return thisThought
+    
+def unlikeSomeThought(id, userId):
+    thisUser = User.objects.get(id=userId)
+    thisThought=Thought.objects.get(id=id)
+    thisUser.likes.remove(thisThought)
+    return thisThought
