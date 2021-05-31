@@ -61,7 +61,7 @@ def welcomeThoughts(request):
         request.session['thisUsersLname']=thisUsers.lname
         context={
             'Thoughts' : Thought.objects.all(),
-            'hisFavs' : Thought.objects.filter(likedBy=thisUsers)
+            'hisFavs' : Thought.objects.filter(likedBy=thisUsers),
         }
         return render(request,'thoughts.html', context)
 
@@ -70,10 +70,13 @@ def thoughtData(request, id):
         thisUsers= User.objects.get(email=request.session['email'])
         thisThought = Thought.objects.get(id=id),
         thisThought = thisThought[0]
+        q1 = User.objects.filter(likes=thisThought.id)
+        notAllLikers = q1.exclude(createdThoughts=thisThought)
         context={
             'specificThought' : Thought.objects.get(id=id),
             'hisFavs' : Thought.objects.filter(likedBy=thisUsers),
-            'likers' : User.objects.filter(likes=thisThought.id)
+            'likers' : notAllLikers
+            
         }
         return render(request,'specificThought.html', context)
 

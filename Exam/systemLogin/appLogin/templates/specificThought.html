@@ -13,8 +13,8 @@
             float: right;
         }
         .box{
-            max-width: 150px;
-            max-height: 80px;
+            max-width: 450px;
+            max-height: 170px;
             border: 1px solid black;
             background-color: rgb(86, 202, 90);
         }
@@ -23,11 +23,12 @@
 </head>
 <body>
     <a href="/cleanSession" id="tre">Log Out</a>
+    <a href="/" id="tre">Dashboard</a>
     <br><br>
 
     <p>{{specificThought.uploadeBy.fname}} Says:</p> <br>
     <p class="box">{{specificThought.post}}</p> <br>
-    {% if Thought in hisFavs %}
+    {% if specificThought in hisFavs %}
         <a href="/unlikethis/{{specificThought.id}}"> unlike</a>
     {% else %}
         <a href="/likethis/{{specificThought.id}}"> like</a>
@@ -46,6 +47,10 @@
                 <td>{{ user.lname }}</td>
             </tr>
             {% endfor %}
+            <tr>
+                <td>{{ specificThought.uploadeBy.fname }}</td>
+                <td>{{ specificThought.uploadeBy.fname }}</td>
+            </tr>
             </table>
     </div>
  
