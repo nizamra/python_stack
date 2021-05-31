@@ -62,6 +62,10 @@ def createThought(desc, userId):
     thisUser.createdThoughts.add(thisThought)
     return thisThought
 
+def delThought(id):
+    thisThought=Thought.objects.get(id=id)
+    thisThought.delete()
+
 def likeSomeThought(id, userId):
     thisUser = User.objects.get(id=userId)
     thisThought=Thought.objects.get(id=id)

@@ -9,6 +9,7 @@ urlpatterns = [
     path('likethis/<int:id>', views.likeThought),
     path('unlikethis/<int:id>', views.unlikethisThought),
     path('thought/<int:id>', views.thoughtData),
+    path('delete/<int:id>', views.deleteThought),
 
     path('cleanSession', views.cleanTheSession),
 

@@ -16,8 +16,28 @@
             max-width: 450px;
             max-height: 170px;
             border: 1px solid black;
-            background-color: rgb(86, 202, 90);
         }
+        .orangotan{
+            text-decoration: none;
+            margin-left: 420px;
+            max-width: 25px;
+            max-height: 15px;
+            border: 1px solid black;
+            background-color: orange;
+            color: black;
+            box-shadow: 4px 3px black;
+        }
+        .greener{
+            text-decoration: none;
+            margin-left: 420px;
+            max-width: 25px;
+            max-height: 15px;
+            border: 1px solid black;
+            background-color: green;
+            color: white;
+            box-shadow: 4px 3px black;
+        }
+
     </style>
     <title>Your Thoughts Page</title>
 </head>
@@ -29,9 +49,9 @@
     <p>{{specificThought.uploadeBy.fname}} Says:</p> <br>
     <p class="box">{{specificThought.post}}</p> <br>
     {% if specificThought in hisFavs %}
-        <a href="/unlikethis/{{specificThought.id}}"> unlike</a>
+        <a href="/unlikethis/{{specificThought.id}}" class="orangotan"> unlike</a>
     {% else %}
-        <a href="/likethis/{{specificThought.id}}"> like</a>
+        <a href="/likethis/{{specificThought.id}}" class="greener"> like</a>
     {% endif %}
 
     <h2>people who like the thought</h2>
@@ -49,7 +69,7 @@
             {% endfor %}
             <tr>
                 <td>{{ specificThought.uploadeBy.fname }}</td>
-                <td>{{ specificThought.uploadeBy.fname }}</td>
+                <td>{{ specificThought.uploadeBy.lname }}</td>
             </tr>
             </table>
     </div>

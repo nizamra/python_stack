@@ -12,25 +12,47 @@
         #tre{
             float: right;
         }
+        td{
+            border-bottom: transparent;
+        }
         .box{
             margin: 0px 5px;
-            max-width: 250px;
+            width: 270px;
             max-height: 80px;
             border: 1px solid black;
             background-color: rgb(163, 86, 86);
         }
         #thisID{
-            width: 300px;
+            width: 500px;
             height: 30px;
         }
         .brbr{
             max-width: 900px;
-            height: 1px;
-            background-color: indigo;
+            max-height: 1px;
+            background-color: black;
         }
         .brbr2{
             max-width: 300px;
             background-color: rgb(0, 5, 73);
+        }
+        #bluish{
+            text-decoration: none;
+            width: 90px;
+            height: 35px;
+            border: 1px solid black;
+            background-color: blue;
+            color: white;
+            box-shadow: 4px 3px black;
+
+        }
+        .redding{
+            width: 25px;
+            height: 15px;
+            background-color: red;
+            color: white;
+        }
+        .marginalize{
+            margin-right: 115px;
         }
     </style>
     <title>Your Thoughts Page</title>
@@ -42,18 +64,29 @@
 
     <form action="/addThought" method="POST">
         {% csrf_token %}
-		<label for="thisID">Your Thought Here:</label><br>
 		<input name="formDesc" id="thisID" pattern="(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain uppercase and small case and at least  five characters" required placeholder="Post a Great Thought Here!">
-        <input type="submit" value="Submit">
-		<input type="reset" value="Empty to Fill Again">
+        <input type="submit" id="bluish" value="Add Thought!">
     </form>
 
     <hr class="brbr">
     {% for Thought in Thoughts %}
-        <p>{{Thought.uploadeBy.fname}} Says:</p>
-        <p class="box">{{Thought.post}}</p>
-        <a href="/thought/{{Thought.id}}"> details</a> {{ Thought.likedBy.count }} people like this
-        <hr class="brbr2">
+    <table>
+        
+        
+        <tr>
+            <td>{{Thought.uploadeBy.fname}} Says: </td>
+            <td><div>
+                <p class="box">{{Thought.post}}</p> 
+                <a class="marginalize" href="/thought/{{Thought.id}}"> details</a> {{ Thought.likedBy.count }} people like this
+            </div></td>
+            <td>{% if Thought.uploadeBy.id == request.session.id %}
+                <a class="redding" href="/delete/{{Thought.id}}">delete</a>
+            {% endif %} </td>
+        </tr>
+        
+    </table>
+
+
     {% endfor %}
  
 </body>

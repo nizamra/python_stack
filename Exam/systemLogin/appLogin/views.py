@@ -59,8 +59,10 @@ def welcomeThoughts(request):
         request.session['thisUsersName']=thisUsers.fname
         request.session['id']=thisUsers.id
         request.session['thisUsersLname']=thisUsers.lname
+        allThoughts = Thought.objects.all()
+        #allThoughts = allThoughts.order_by('likedBy').reverse()
         context={
-            'Thoughts' : Thought.objects.all(),
+            'Thoughts' : allThoughts,
             'hisFavs' : Thought.objects.filter(likedBy=thisUsers),
         }
         return render(request,'thoughts.html', context)
@@ -76,10 +78,12 @@ def thoughtData(request, id):
             'specificThought' : Thought.objects.get(id=id),
             'hisFavs' : Thought.objects.filter(likedBy=thisUsers),
             'likers' : notAllLikers
-            
         }
         return render(request,'specificThought.html', context)
 
+def deleteThought(request, id):
+    delThought(id)
+    return redirect('/')
 
 def addThought(request):
     desc = request.POST['formDesc']
