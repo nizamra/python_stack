@@ -1,16 +1,20 @@
+..\..\..\my-environments\djangoEnv\Scripts\activate
+
 Django
 #1. create virtual environment, activate it, then install Django inside it
-	python -m venv djangoPy3Env
-	call djangoPy3Env\Scripts\activate 
-	pip install Django
+python -m venv djangoPy3Env
+call djangoPy3Env\Scripts\activate 
+pip install Django
 
 #2. Create your project in some directories, then go to the project folder, as follows:
-	django-admin startproject your_project_name_here
-	cd your_project directory
+django-admin startproject your_project_name_here
+cd your_project directory
 
 # 4. For every app we want to add to our project, we'll do the following:
-	your_project_name_here> python manage.py startapp your_app_name_here
-	code .
+python manage.py startapp your_app_name_here
+md appWall\templates appWall\static
+touch appWall\templates\index.html appWall\static\style.css
+code .
 
 # 5. for file settings.py, add the App to the  INSTALLED_APPS dictionary as follows:
 INSTALLED_APPS = [
@@ -42,6 +46,7 @@ urlpatterns = [
 
 # then in our app's views.py file, put a function called index 
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 from .models import *
 
 
@@ -217,6 +222,7 @@ authors: <br>
 
 # 9. creating Models CAPITALIZED
 from django.db import models
+import os
 import re
 
 class userManager(models.Manager):
