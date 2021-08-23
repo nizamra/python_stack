@@ -21,7 +21,7 @@ def func(list):
         if(list[i]>list[1]):
             newlist.append(list[i])
     return newlist
-print(func([1,2,3,4]))
+print(func([1,0,3,4]))
 
 def func(list):
     newlist=[]

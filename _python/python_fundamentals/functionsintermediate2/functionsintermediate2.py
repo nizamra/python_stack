@@ -20,10 +20,15 @@ sports_directory = {
     'soccer' : ['Messi', 'Ronaldo', 'Rooney']
 }
 z = [ {'x': 10, 'y': 20} ]
+print(z)
 x[1][0]=15
+print(x)
 students[0]['last_name']="Bryant"
+print(students)
 sports_directory['soccer'][0]="Andres"
+print(sports_directory)
 z[0]['y']=30
+print(z)
 
 
 
